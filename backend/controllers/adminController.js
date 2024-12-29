@@ -82,12 +82,16 @@ const addDoctor = async (req, res) => {
 
     await newDoctor.save();
 
-    res.status(201).json({ message: "Doctor added successfully" });
+    res
+      .status(201)
+      .json({ success: true, message: "Doctor added successfully" });
   } catch (error) {
     console.error("Error in addDoctor API: ", error.message);
-    res
-      .status(500)
-      .json({ message: "Internal Server Error", error: error.message });
+    res.status(500).json({
+      success: false,
+      message: "Internal Server Error",
+      error: error.message,
+    });
   }
 };
 
@@ -102,7 +106,6 @@ const loginAdmin = async (req, res) => {
       password === process.env.ADMIN_PASSWORD
     ) {
       const token = jwt.sign(email + password, process.env.JWT_SECRET);
-   
 
       res.json({ success: true, token });
     } else {
@@ -114,4 +117,19 @@ const loginAdmin = async (req, res) => {
   }
 };
 
-export { addDoctor, loginAdmin };
+// Get All Doctors api route for admin panel
+const allDoctors = async (req, res) => {
+  try {
+    const doctors = await doctorModel
+      .find()
+      .sort({ date: -1 })
+      .select("-password");
+
+    res.json({ success: true, doctors });
+  } catch (error) {
+    console.log(error.message);
+    res.json({ success: false, message: error.message });
+  }
+};
+
+export { addDoctor, loginAdmin, allDoctors };
