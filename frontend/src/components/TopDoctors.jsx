@@ -28,9 +28,19 @@ const TopDoctors = () => {
               alt={`Image of Dr. ${item.name}`}
             />
             <div className="p-4">
-              <div className="flex items-center gap-2 text-sm text-green-500">
-                <span className="w-2 h-2 bg-green-500 rounded-full"></span>
-                <span>Available</span>
+              <div className="flex items-center gap-2 text-sm">
+                <span
+                  className={`w-2 h-2 ${
+                    item.available ? "bg-green-500" : "bg-gray-500"
+                  } rounded-full`}
+                ></span>
+                <span
+                  className={`${
+                    item.available ? "text-green-500" : "text-gray-500"
+                  }`}
+                >
+                  {item.available ? "Available" : "Not Available"}
+                </span>
               </div>
               <p className="text-gray-900 text-lg font-medium">{item.name}</p>
               <p className="text-gray-600 text-sm">{item.speciality}</p>

@@ -26,14 +26,18 @@ const MyAppointments = () => {
     "Dec",
   ];
 
+  const slotDateFormat = (slotDate) => {
+    console.log("slotDate", slotDate);
+    const dateArray = slotDate.split("_");
+    const day = dateArray[0];
+    const monthIndex = Number(dateArray[1]); // monthIndex should not subtract 1
+    const year = dateArray[2];
+
+    return `${day} ${months[monthIndex]} ${year}`; // Correct format
+  };
+
   const navigate = useNavigate();
 
-  const slotDateFormat = (slotDate) => {
-    const dateArray = slotDate.split("_");
-    return (
-      dateArray[0] + " " + months[Number(dateArray[1]) - 1] + " " + dateArray[2]
-    );
-  };
   const getUsersAppointments = async () => {
     try {
       const { data } = await axios.get(`${backendUrl}/api/user/appointments`, {
@@ -178,12 +182,12 @@ const MyAppointments = () => {
             </div>
             <div></div>
             <div className="flex flex-col gap-2 justify-end">
-              {!item.cancelled && item.payment && (
+              {!item.cancelled && item.payment && !item.isCompleted && (
                 <button className="sm:min-w-48 py-2 border rounded text-store-500 bg-indigo-50">
                   Paid
                 </button>
               )}
-              {!item.cancelled && !item.payment && (
+              {!item.cancelled && !item.payment && !item.isCompleted && (
                 <button
                   onClick={() => appointmentRazorpay(item._id)}
                   className="text-sm text-stone-500 text-center sm:min-w-48 py-2 border hover:bg-primary hover:text-white transition-all duration-300"
@@ -192,7 +196,7 @@ const MyAppointments = () => {
                 </button>
               )}
 
-              {!item.cancelled && (
+              {!item.cancelled && !item.isCompleted && (
                 <button
                   onClick={() => cancelAppointment(item._id)}
                   className="text-sm text-stone-500 text-center sm:min-w-48 py-2 border  hover:bg-red-600 hover:text-white transition-all duration-300"
@@ -201,9 +205,15 @@ const MyAppointments = () => {
                 </button>
               )}
 
-              {item.cancelled && (
+              {item.cancelled && !item.isCompleted && (
                 <button className="sm:min-w-48 py-2 border border-red-500 rounded text-red-500">
                   Appointment cancelled
+                </button>
+              )}
+
+              {item.isCompleted && (
+                <button className="sm:min-w-48 py-2 border border-green-500 rounded text-green-500">
+                  Completed
                 </button>
               )}
             </div>
