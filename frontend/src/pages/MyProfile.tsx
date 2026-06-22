@@ -9,7 +9,7 @@ const MyProfile = () => {
   const { userData, setUserData, loadUserProfileData, token, backendUrl } = useContext(AppContext);
 
   const [isEdit, setIsEdit] = useState(false);
-  const [image, setImage] = useState(false);
+  const [image, setImage] = useState<File | false>(false);
 
   const updateUserProfileData = async () => {
     try {
