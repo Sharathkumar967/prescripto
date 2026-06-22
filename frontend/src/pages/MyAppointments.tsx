@@ -152,6 +152,7 @@ const MyAppointments = () => {
         toast.success(data.message);
         setShowReviewModal(false);
         setReviewData({ appointmentId: '', docId: '', rating: 5, reviewText: '' });
+        getDoctors();
       } else {
         toast.error(data.message);
       }

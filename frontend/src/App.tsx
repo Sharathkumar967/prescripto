@@ -16,10 +16,11 @@ import VideoConsultation from './pages/VideoConsultation';
 
 const App = () => {
   return (
-    <div className="w-full px-4 sm:px-6 md:px-10 lg:px-16 mx-auto max-w-[1800px]">
+    <div className="w-full">
       <ToastContainer />
       <Navbar />
-      <Routes>
+      <div className="px-4 sm:px-6 md:px-10 lg:px-16 mx-auto max-w-[1800px]">
+        <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/doctors" element={<Doctors />} />
         <Route path="/doctors/:speciality" element={<Doctors />} />
@@ -33,6 +34,7 @@ const App = () => {
       </Routes>
 
       <Footer />
+      </div>
     </div>
   );
 };

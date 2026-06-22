@@ -45,7 +45,7 @@ const loginDoctor = async (req, res) => {
 
     const isMatch = await bcrypt.compare(password, doctor.password);
 
-    if (!isMatch) {
+    if (isMatch) {
       const token = jwt.sign({ id: doctor._id }, process.env.JWT_SECRET);
 
       res.json({ success: true, token });
@@ -82,7 +82,7 @@ const appointmentComplete = async (req, res) => {
   try {
     const { docId, appointmentId } = req.body;
 
-    const appointmentData = await appointmentModel.findByIdAndUpdate(appointmentId);
+    const appointmentData = await appointmentModel.findById(appointmentId);
 
     if (appointmentData && appointmentData.docId === docId) {
       await appointmentModel.findByIdAndUpdate(appointmentId, {
@@ -103,7 +103,7 @@ const appointmentCancel = async (req, res) => {
   try {
     const { docId, appointmentId } = req.body;
 
-    const appointmentData = await appointmentModel.findByIdAndUpdate(appointmentId);
+    const appointmentData = await appointmentModel.findById(appointmentId);
 
     if (appointmentData && appointmentData.docId === docId) {
       await appointmentModel.findByIdAndUpdate(appointmentId, {

@@ -13,7 +13,7 @@ const VideoConsultation = () => {
   }
 
   return (
-    <div className="h-screen w-full bg-slate-900 flex flex-col">
+    <div className="fixed inset-0 z-[100] h-screen w-full bg-slate-900 flex flex-col">
       <div className="bg-slate-800 text-white p-4 flex justify-between items-center">
         <h2 className="text-xl font-semibold">Prescripto Telemedicine (Doctor Portal)</h2>
         <button 

@@ -26,8 +26,8 @@ const Navbar = () => {
   };
 
   return (
-    <div className={`sticky top-0 z-50 transition-all duration-300 bg-white/80 backdrop-blur-md border-b border-b-slate-200 ${scrolled ? 'py-3 shadow-sm' : 'py-5 mb-5'}`}>
-      <div className="flex items-center justify-between text-sm w-full">
+    <div className={`sticky top-0 z-50 transition-all duration-300 bg-white/100 backdrop-blur-md border-b border-b-slate-200 ${scrolled ? 'py-3 shadow-sm' : 'py-5 mb-5'}`}>
+      <div className="flex items-center justify-between text-sm w-full px-4 sm:px-6 md:px-10 lg:px-16 mx-auto max-w-[1800px]">
         <motion.img 
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}

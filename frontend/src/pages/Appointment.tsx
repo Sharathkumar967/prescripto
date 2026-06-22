@@ -179,7 +179,7 @@ const Appointment = () => {
                     <Star size={16} className="text-yellow-500 fill-current" />
                     <span className="ml-1.5 font-bold text-yellow-700">{docInfo.averageRating || "5.0"}</span>
                   </div>
-                  <span className="text-sm text-gray-500 font-medium">({docInfo.totalReviews || 0} reviews)</span>
+                  <span className="text-sm text-gray-500 font-medium">({reviews.length > 0 ? reviews.length : (docInfo.totalReviews || 0)} reviews)</span>
                 </div>
               </div>
 
@@ -255,7 +255,11 @@ const Appointment = () => {
               <div className="flex gap-3 overflow-x-auto pt-2 pb-4 custom-scrollbar -mx-2 px-2">
                 {docSlots.length > 0 && docSlots.map((item, index) => (
                   <div
-                    onClick={() => { setSlotIndex(index); setSlotTime(''); }}
+                    onClick={(e) => { 
+                      setSlotIndex(index); 
+                      setSlotTime(''); 
+                      e.currentTarget.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+                    }}
                     key={index}
                     className={`flex-shrink-0 flex flex-col items-center justify-center w-16 h-20 rounded-2xl cursor-pointer transition-all duration-300 border ${
                       slotIndex === index 

@@ -9,6 +9,6 @@ const reviewSchema = new mongoose.Schema({
   date: { type: Number, required: true },
 });
 
-const reviewModel = mongoose.models.review || mongoose.model('review', reviewSchema);
+const reviewModel = (mongoose.models.review || mongoose.model('review', reviewSchema)) as mongoose.Model<any>;
 
 export default reviewModel;
