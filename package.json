@@ -12,7 +12,7 @@
     "dev:admin": "npm run dev --workspace=admin",
     "dev:backend": "npm run server --workspace=backend",
     "dev": "npm run dev:frontend & npm run dev:admin & npm run dev:backend",
-    "prepare": "husky"
+    "prepare": "husky || true"
   },
   "devDependencies": {
     "husky": "^9.1.7",
