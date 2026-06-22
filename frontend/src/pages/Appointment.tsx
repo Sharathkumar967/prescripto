@@ -252,7 +252,7 @@ const Appointment = () => {
               </h3>
               
               {/* Horizontal Scroll for Days */}
-              <div className="flex gap-3 overflow-x-auto pb-4 custom-scrollbar -mx-2 px-2">
+              <div className="flex gap-3 overflow-x-auto pt-2 pb-4 custom-scrollbar -mx-2 px-2">
                 {docSlots.length > 0 && docSlots.map((item, index) => (
                   <div
                     onClick={() => { setSlotIndex(index); setSlotTime(''); }}
