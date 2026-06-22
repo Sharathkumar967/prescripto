@@ -4,7 +4,7 @@ import { ChevronRight } from 'lucide-react';
 
 const Footer = () => {
   return (
-    <footer className="relative bg-gradient-to-b from-white to-indigo-50/50 pt-20 pb-10 overflow-hidden">
+    <footer className="relative bg-gradient-to-b from-white to-indigo-50/50 pt-20 pb-10 overflow-hidden mt-40">
       {/* Decorative Top Border */}
       <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500"></div>
 
